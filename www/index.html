@@ -95,7 +95,26 @@
     }
 
     function updateData() {
-      $("#display").html("update does not work");
+      // $("#display").html("update does not work");
+      UTdata.fetch()
+        .then(function(results) {
+          let value = parseInt($("#update").val());
+          results.set(key, value);
+          return results.update();
+      })
+        .then(function(results) {
+        //console.log("success");
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html("delete success");
+      })
+        .catch(function(error) {
+        //console.leg("error");
+        $("#display").removeClass();
+        $("#display").addClass("bg-warning");
+        $("#display").html("delete fail:" + JSON.stringify(error));
+      })
+
     }
   </script>
 </head>
