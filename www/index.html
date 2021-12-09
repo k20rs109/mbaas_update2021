@@ -71,7 +71,18 @@
     }
 
     function countData() {
-      $("#display").html("count does not work");
+      // $("#display").html("count does not work");
+      UTdata.count().fetchAll()
+        .then(function(results) {
+          $("#display").removeClass();
+          $("#display").addClass("bg-success");
+          $("#display").html(results.count);
+        })
+        .catch(function(error) {
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("count fail:" + JSON.stringify(error));
+        })
     }
 
     function deleteData() {
@@ -79,19 +90,19 @@
       UTdata.fetch()
         .then(function(results) {
           return results.delete();
-      })
+        })
         .then(function(results) {
-        //console.log("success");
-        $("#display").removeClass();
-        $("#display").addClass("bg-success");
-        $("#display").html("delete success");
-      })
+          //console.log("success");
+          $("#display").removeClass();
+          $("#display").addClass("bg-success");
+          $("#display").html("delete success");
+        })
         .catch(function(error) {
-        //console.leg("error");
-        $("#display").removeClass();
-        $("#display").addClass("bg-warning");
-        $("#display").html("delete fail:" + JSON.stringify(error));
-      })
+          //console.leg("error");
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
     }
 
     function updateData() {
@@ -101,19 +112,19 @@
           let value = parseInt($("#update").val());
           results.set(key, value);
           return results.update();
-      })
+        })
         .then(function(results) {
-        //console.log("success");
-        $("#display").removeClass();
-        $("#display").addClass("bg-success");
-        $("#display").html("delete success");
-      })
+          //console.log("success");
+          $("#display").removeClass();
+          $("#display").addClass("bg-success");
+          $("#display").html("delete success");
+        })
         .catch(function(error) {
-        //console.leg("error");
-        $("#display").removeClass();
-        $("#display").addClass("bg-warning");
-        $("#display").html("delete fail:" + JSON.stringify(error));
-      })
+          //console.leg("error");
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
 
     }
   </script>
